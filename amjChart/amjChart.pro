@@ -1,6 +1,10 @@
 
-!defined(prefix,var):prefix=/opt/amj
-!defined(prefix_QCustomPlot):prefix_QCustomPlot=/opt/QCustomPlot
+isEmpty(prefix){
+  prefix=/opt/amj
+}
+isEmpty(prefix_QCustomPlot){
+  prefix_QCustomPlot=/opt/QCustomPlot
+}
   
 QT       += core gui
 
