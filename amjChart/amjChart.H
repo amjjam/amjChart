@@ -23,6 +23,7 @@ public:
   void ngraphs(int n); // Number of graphs in the plot, total across all panels
   int ngraphs();
   void colors(QVector<QColor> colors){_colors=colors;};
+  void brush(bool b);
   void fill();
   void panelnames(std::vector<std::string> &);
   void ytitles(std::vector<std::string> &);
@@ -47,6 +48,7 @@ private:
   double tref; // UTC time since epoch in seconds
   double t1,t2; // current time range
   QVector<QColor> _colors;
+  bool _brush;
   int nPanels;
   QVector<bool> _autoscale;
   QVector<QString> _panelnames;

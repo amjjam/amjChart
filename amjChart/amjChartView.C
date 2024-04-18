@@ -11,7 +11,7 @@
 amjChartView::amjChartView(QWidget *parent)
   : QWidget(parent), ui(new Ui::amjChartView),t1d(-100),t2d(1),tscale(1),
     tref((double)QDateTime::currentDateTimeUtc().toMSecsSinceEpoch()/1000),
-    t1(t1d),t2(t2d),nPanels(0),nGraphs(0),
+    t1(t1d),t2(t2d),_brush(false),nPanels(0),nGraphs(0),
     _showLegend(false),_legendWrap(5),_wheelFactor(0.05),_updateInterval(100){
   ui->setupUi(this);
 
@@ -47,6 +47,11 @@ void amjChartView::ngraphs(int n){
 
 int amjChartView::ngraphs(){
   return ui->plot->graphCount();
+}
+
+void amjChartView::brush(bool b){
+  _brush=b;
+  format();
 }
 
 void amjChartView::panelnames(std::vector<std::string> &panelnames){
@@ -217,6 +222,19 @@ void amjChartView::format(){
     j=i/nGraphsPerPanel;
     ui->plot->graph(i)->setKeyAxis(ui->plot->axisRect(j)->axis(QCPAxis::atBottom,0));
     ui->plot->graph(i)->setValueAxis(ui->plot->axisRect(j)->axis(QCPAxis::atLeft,0));
+    // If the next graph down is also in the same panel and _brush=true then setChannelFillGraph that next graph down
+    // If the next grap down is in a different panels then setChanelFillGraph(0)
+    // If _brush=false then setBrush(Qt::NoBrush)
+    if(_brush==true){
+      ui->plot->graph(i)->setBrush(QBrush(_colors[i%_colors.size()]));
+      if(i!=0&&(i-1)/nGraphsPerPanel==j)
+        ui->plot->graph(i)->setChannelFillGraph(ui->plot->graph(i-1));
+      else
+        ui->plot->graph(i)->setChannelFillGraph(0);
+    }
+    else{
+      ui->plot->graph(i)->setBrush(Qt::NoBrush);
+    }
   }
 
   // Create the legend
