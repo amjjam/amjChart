@@ -61,6 +61,13 @@ void amjChartTest::update_showToolbar(int state){
     ui->chart->toolbarShow(false);
 }
 
+void amjChartTest::update_brush(int state){
+  if(state==Qt::Checked)
+    ui->chart->brush(true);
+  else
+    ui->chart->brush(false);
+}
+
 void amjChartTest::append(){
   if(ui->chart->ngraphs()==0)
     return;

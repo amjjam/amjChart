@@ -126,6 +126,27 @@
         </property>
        </widget>
       </item>
+      <item row="8" column="1">
+       <widget class="QCheckBox" name="checkBox_brush">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>Brush:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QCheckBox" name="checkBox">
+        <property name="text">
+         <string>CheckBox</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -272,6 +293,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>checkBox_brush</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>amjChartTest</receiver>
+   <slot>update_brush(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>612</x>
+     <y>255</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>192</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>update_npanels(int)</slot>
@@ -282,5 +319,6 @@
   <slot>update_nInLegend(int)</slot>
   <slot>update_nLegendWrap(int)</slot>
   <slot>update_showToolbar(int)</slot>
+  <slot>update_brush(int)</slot>
  </slots>
 </ui>

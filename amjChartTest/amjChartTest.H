@@ -24,6 +24,7 @@ public slots:
   void update_nInLegend(int);
   void update_nLegendWrap(int);
   void update_showToolbar(int);
+  void update_brush(int);
 private:
   Ui::amjChartTest *ui;
   QTimer timer;
